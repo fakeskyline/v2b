@@ -178,7 +178,7 @@ private fun V2B() {
                 }
                 Screen.WEB -> {
                     Row(Modifier.background(Dark).padding(horizontal = 5.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { if (views[activeTab]?.canGoBack() == true) views[activeTab]?.goBack() else home() }, modifier = Modifier.size(36.dp) { Icon(Icons.Default.ArrowBack, null, tint = White) }
+                        IconButton(onClick = { if (views[activeTab]?.canGoBack() == true) views[activeTab]?.goBack() else home() }, modifier = Modifier.size(36.dp)) { Icon(Icons.Default.ArrowBack, null, tint = White) }
                         IconButton(onClick = { views[activeTab]?.takeIf { it.canGoForward() }?.goForward() }, modifier = Modifier.size(36.dp)) { Icon(Icons.Default.ArrowForward, null, tint = Gray) }
                         OutlinedTextField(value = input, onValueChange = { input = it }, modifier = Modifier.weight(1f).heightIn(min = 48.dp), singleLine = true,
                             placeholder = { Text("Address or search", color = Gray, fontSize = 12.sp) }, textStyle = androidx.compose.ui.text.TextStyle(color = White, fontSize = 12.sp),
