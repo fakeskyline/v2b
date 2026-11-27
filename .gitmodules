@@ -1,0 +1,3 @@
+[submodule "upstream/bare-browser"]
+	path = upstream/bare-browser
+	url = https://github.com/BareBrowser/bare-browser.git

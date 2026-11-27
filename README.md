@@ -1,15 +1,24 @@
-# v2b Android browser
+# v2b — Chromium browser fork
 
-Kotlin + Jetpack Compose starter for package `com.v2b`.
+**Browser engine base: [Bare Browser](https://github.com/BareBrowser/bare-browser), pinned at `019a612f7bb758da20c33ecf43c086e696391aec`.**
 
-This first build uses Android System WebView (Chromium-based). Search opens DuckDuckGo HTML directly in the browser, avoiding brittle API scraping. It includes the v2b home screen, address/search field, navigation, simple in-app tabs, and an Extensions page.
+The previous Kotlin/Compose WebView prototype is not the browser foundation and does not implement Chrome extensions. v2b is moving to Bare's Chromium source/patch build, preserving the real Chromium engine and extension runtime instead of faking CRX support.
 
-**CRX caveat:** System WebView does not include Chrome's extension runtime. CRX installation/execution is not implemented in this starter. A dedicated extension-capable Chromium fork is a much larger native build integration.
+## Upstream
+- Source: https://github.com/BareBrowser/bare-browser
+- Pinned upstream commit: 019a612f7bb758da20c33ecf43c086e696391aec
+- Chromium 158 series; Bare 2.0.9 upstream
+- Supports Chrome Web Store extensions, CRX files and unpacked extensions; incognito permissions; Chromium tabs/runtime.
 
-## Build
-Open in Android Studio with SDK 35 and Java 17, or run `gradle assembleDebug` with Gradle 8.9 installed. APK output: `app/build/outputs/apk/debug/app-debug.apk`.
+The upstream source is linked as a Git submodule at `upstream/bare-browser`. This pin is intentional: updates should be reviewed and merged deliberately.
 
-## GitHub Actions
-Push to `main` or manually run the `Build v2b APK` workflow. Download the `v2b-debug-apk` artifact.
+## v2b customizations (planned/in progress)
+- Branding: v2b icon and logotype
+- Geological typeface
+- v2b start page and DuckDuckGo search experience
+- v2b navigation/toolbar appearance
 
-Assets from the attached v2b ZIP: launcher icon, start-page logotype and Geological font.
+## Build reality
+Bare builds Chromium from a pinned source checkout and patch series using its Linux Docker builder. It is **not** a small Gradle dependency and cannot be built with the current simple Android Actions workflow. The old WebView APK workflow remains only for the prototype while the Chromium-based build pipeline is being established; it is not a v2b browser release.
+
+See upstream `BUILDING.md` and `docs/build-from-source.md` for prerequisites and the build process.
